@@ -27,7 +27,7 @@ jobs:
         pip install requests beautifulsoup4 discord-webhook
 
     - name: Run the scraper script
-      run: python test.py
+      run: python jvjks.py
       env:
         # Make sure you have this secret configured in your GitHub repository settings
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
