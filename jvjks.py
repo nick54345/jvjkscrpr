@@ -14,7 +14,7 @@ HEADERS = {
 
 def generate_dynamic_base_url_for_day():
     """Generate the base URL for the previous day (e.g., https://javjunkies.org/main/2025/05-21-16/)"""
-    yesterday = datetime.now() - timedelta(days=1)
+    yesterday = datetime.now() - timedelta(days=7)
     date_suffix = yesterday.strftime("%m-%d-16")
     return f"{BASE_URL}{date_suffix}/"
 
