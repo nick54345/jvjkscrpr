@@ -1,0 +1,33 @@
+name: Daily VR Scraper
+
+on:
+  schedule:
+    # Runs daily at 11:30 AM UTC, which is 5:00 PM IST
+    - cron: '30 11 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  scrape_and_notify:
+    runs-on: ubuntu-latest # Uses a fresh Ubuntu environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Use the latest Python 3 version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 discord-webhook
+
+    - name: Run the scraper script
+      run: python test.py
+      env:
+        # Make sure you have this secret configured in your GitHub repository settings
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
